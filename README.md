@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+🚀 Just built a full-featured AI Chatbot Web App using Next.js 14, TypeScript, Tailwind CSS, and Framer Motion!
 
-## Getting Started
+🧠 Tech Stack:
 
-First, run the development server:
+Frontend: Next.js (App Router, TypeScript), Tailwind CSS, Shadcn UI
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Animations: Framer Motion
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+PDF Parsing: PDF.js (via CDN)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Icons: Lucide React
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+UUID Handling: uuid
 
-## Learn More
+Security: DOMPurify for XSS protection
 
-To learn more about Next.js, take a look at the following resources:
+💡 Key Features:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+📁 PDF Upload: Upload and parse PDF files directly in-browser using PDF.js (no backend needed)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+💬 Dynamic Chat Interface: Supports multi-session conversations with a clean and responsive UI
 
-## Deploy on Vercel
+⚡ AI Integration: Sends chat messages + uploaded PDF content to a Gemini-based AI API and returns intelligent responses
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+📜 Message History: Maintains message history across multiple chat sessions
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+🧼 Secure Rendering: Uses DOMPurify to safely render AI responses with basic formatting (bold, lists, code)
+
+🎨 Modern UI/UX: Elegant cards for features, typing animations, and scrollable sidebar chat history
+
+This was a great exercise in combining multiple modern web technologies to deliver a real-time, file-aware AI assistant with a smooth user experience.
+
+Looking forward to adding more features like authentication, persistent chat storage, and voice input next! 🎯
+
+#NextJS #TypeScript #AI #GeminiAPI #TailwindCSS #PDFjs #FramerMotion #Chatbot #OpenAI #ReactJS #WebDevelopment #BuildInPublic
