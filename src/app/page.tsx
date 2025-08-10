@@ -263,61 +263,67 @@ export default function ChatbotPage() {
   };
 
   return (
-    <div className="flex h-screen">
-      {/* Sidebar */}
-      <motion.div
-        initial={{ x: -100 }}
-        animate={{ x: 0 }}
-        transition={{ type: "spring", stiffness: 100 }}
-        className="w-56 border-r p-2 bg-muted space-y-2 h-full"
+    
+  <div className="flex h-screen">
+  {/* Sidebar */}
+  <motion.div
+    initial={{ x: -100 }}
+    animate={{ x: 0 }}
+    transition={{ type: "spring", stiffness: 100 }}
+    className="w-56 border-r p-2 bg-muted space-y-2 h-full"
+  >
+    <div className="text-center mb-2 space-y-2">
+      <h2 className="text-lg font-semibold">Chats</h2>
+      <Button
+        variant="default"
+        size="sm"
+        className="w-full"
+        onClick={handleNewChat}
       >
-        <div className="text-center mb-2 space-y-2">
-          <h2 className="text-lg font-semibold">Chats</h2>
-          <Button
-            variant="default"
-            size="sm"
-            className="w-full"
-            onClick={handleNewChat}
+        + New Chat
+      </Button>
+    </div>
+
+    <ScrollArea className="h-[calc(100vh-100px)] pr-1">
+      <div className="space-y-1">
+        {sessions.map((session) => (
+          <motion.div
+            key={session.id}
+            whileHover={{ scale: 1.02 }}
+            className="relative group"
           >
-            + New Chat
-          </Button>
-        </div>
+            <Card
+              onClick={() => setActiveSessionId(session.id)}
+              className={cn(
+                "cursor-pointer pr-8 p-1 hover:bg-accent w-full relative", // extra right padding for button
+                session.id === activeSessionId &&
+                  "bg-primary text-primary-foreground"
+              )}
+            >
+              <CardContent className="p-1 text-xs truncate text-center">
+                {session.title}
+              </CardContent>
 
-        <ScrollArea className="h-[calc(100vh-100px)] pr-1">
-          <div className="space-y-1">
-            {sessions.map((session) => (
-              <motion.div
-                key={session.id}
-                whileHover={{ scale: 1.02 }}
-                className="relative group"
+              {/* Cross button inside card */}
+              <button
+                onClick={(e) => {
+                  e.stopPropagation(); // prevent triggering card click
+                  handleDeleteSession(session.id);
+                }}
+                className="absolute right-1 top-1/2 -translate-y-1/2 text-gray-400 hover:text-red-500"
+                title="Delete"
               >
-                <Card
-                  onClick={() => setActiveSessionId(session.id)}
-                  className={cn(
-                    "cursor-pointer p-1 hover:bg-accent w-full",
-                    session.id === activeSessionId &&
-                      "bg-primary text-primary-foreground"
-                  )}
-                >
-                  <CardContent className="p-1 text-xs truncate text-center">
-                    {session.title}
-                  </CardContent>
-                </Card>
-                <button
-                  onClick={() => handleDeleteSession(session.id)}
-                  className="flex items-center justify-center w-8 h-8 mx-auto mt-1 text-white hover:text-shadow-white text-xl"
-                  title="Delete"
-                >
-                  <X className="w-6 h-6" />
-                </button>
-              </motion.div>
-            ))}
-          </div>
-        </ScrollArea>
-      </motion.div>
+                <X className="w-4 h-4" />
+              </button>
+            </Card>
+          </motion.div>
+        ))}
+      </div>
+    </ScrollArea>
+</motion.div>
 
-      {/* Main */}
-      <div className="flex flex-col flex-1 h-full bg-background">
+    {/* Main */}
+    <div className="flex flex-col flex-1 h-full bg-background">
         <div className="flex flex-col items-center px-2 py-2 border-b">
           <h1 className="text-2xl md:text-6xl font-extrabold mb-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
             AI Chatbot
@@ -329,13 +335,28 @@ export default function ChatbotPage() {
           )}
         </div>
 
-
-        <div className="w-full flex justify-center py-4 border-b bg-background">
+<div className="w-full flex justify-center py-4 border-b bg-background">
   <div className="flex gap-6 max-w-5xl w-full px-4">
-    {[1, 2, 3].map((n) => (
+    {[
+      {
+        title: "Instant AI Chat",
+        description:
+          "Talk to AI in real-time with lightning-fast responses and natural language understanding.",
+      },
+      {
+        title: "Customizable UI",
+        description:
+          "Easily adjust themes, layouts, and features to fit your branding and needs.",
+      },
+      {
+        title: "Secure & Private",
+        description:
+          "Your data stays private with end-to-end encryption and secure storage.",
+      },
+    ].map((feature, index) => (
       <Card
-        key={n}
-        className="flex-1 min-w-[240px] max-w-[320px] shadow-2xl" // Larger card and stronger shadow
+        key={index}
+        className="flex-1 min-w-[240px] max-w-[320px] shadow-2xl"
         style={{ fontFamily: "'Segoe UI', 'Arial', sans-serif" }}
       >
         <CardHeader className="pb-4">
@@ -343,14 +364,13 @@ export default function ChatbotPage() {
             className="text-lg md:text-xl font-extrabold"
             style={{ fontFamily: "'Segoe UI', 'Arial', sans-serif" }}
           >
-            Feature {n}
+            {feature.title}
           </CardTitle>
           <CardDescription
             className="text-sm md:text-base font-bold"
             style={{ fontFamily: "'Segoe UI', 'Arial', sans-serif" }}
           >
-            This chatbot demonstrates feature {n}. Interact with AI
-            instantly with an intuitive and responsive interface.
+            {feature.description}
           </CardDescription>
         </CardHeader>
       </Card>
